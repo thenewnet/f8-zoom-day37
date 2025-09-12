@@ -1,0 +1,30 @@
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    gap: 30px;
+    padding: 0 28px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e8ebed;
+    background-color: #fff;
+    font-size: 1.4rem;
+
+    .left {}
+
+    .search {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .right {
+        display: flex;
+        gap: 20px;
+    }
+}

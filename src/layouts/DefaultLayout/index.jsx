@@ -1,10 +1,16 @@
+import { Outlet } from 'react-router';
 import styles from './DefaultLayout.module.scss';
+import Header from './components/Header';
 
 function DefaultLayout() {
     return (
         <>
             <div className={styles.container}>
-                DefaultLayout
+                <div className={styles.header}>
+                    <Header />
+                </div>
+                
+                <Outlet />
             </div>
         </>
     )

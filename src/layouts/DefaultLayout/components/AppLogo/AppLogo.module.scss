@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0;
+    
+    .logo {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+    }
+
+    .sub_title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+    }
+}
