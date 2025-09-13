@@ -1,11 +1,16 @@
 import styles from './Modal.module.scss';
 
-function Modal() {
+function Modal({ isOpen = false, children }) {
     return (
         <>
-            <div className={styles.container}>
-                Modal
-            </div>
+            {
+                isOpen && (
+                    <div className={styles.container}>
+                        {children}
+                    </div>
+                )
+            }
+
         </>
     )
 }
