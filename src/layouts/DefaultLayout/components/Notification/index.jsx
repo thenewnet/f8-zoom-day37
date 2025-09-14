@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 import styles from './Notification.module.scss';
 import NotificationItem from './NotificationItem';
-import Modal from '../../../../components/Modal';
+import ModalMenu from '../ModalMenu';
 
 function Notification() {
     const [isOpen, setIsOpen] = useState(false);
@@ -64,7 +64,7 @@ function Notification() {
 
                 <div className={clsx(styles.content, { [styles.open]: isOpen })}>
 
-                    <Modal isOpen={isOpen}>
+                    <ModalMenu>
 
                         {
                             isOpen && (
@@ -80,7 +80,7 @@ function Notification() {
                                 <NotificationItem key={item.id} item={item} />
                             ))
                         }
-                    </Modal>
+                    </ModalMenu>
                 </div>
 
 

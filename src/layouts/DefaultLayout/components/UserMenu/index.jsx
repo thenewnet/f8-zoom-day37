@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import clsx from 'clsx';
 
-import Modal from '../../../../components/Modal';
 import styles from './UserMenu.module.scss';
 import Avatar from './Avatar';
 import UserMenuItem from './UserMenuItem';
 import { Link } from 'react-router';
+import ModalMenu from '../ModalMenu';
 
 function UserMenu() {
     const [isOpen, setIsOpen] = useState(false);
@@ -69,7 +69,7 @@ function UserMenu() {
 
                 <div className={clsx(styles.content, { [styles.open]: isOpen })}>
 
-                    <Modal isOpen={isOpen}>
+                    <ModalMenu>
 
                         {
                             isOpen && (
@@ -93,7 +93,7 @@ function UserMenu() {
                                 <UserMenuItem key={item.id} item={item} />
                             ))
                         }
-                    </Modal>
+                    </ModalMenu>
                 </div>
             </div>
         </>

@@ -2,8 +2,8 @@ import { useState } from 'react';
 import clsx from 'clsx';
 
 import styles from './MyCourses.module.scss';
-import Modal from '../../../../components/Modal';
 import MyCourse from './MyCourse';
+import ModalMenu from '../ModalMenu';
 
 function MyCourses() {
     const [isOpen, setIsOpen] = useState(false);
@@ -42,7 +42,7 @@ function MyCourses() {
 
 
 
-                    <Modal isOpen={isOpen}>
+                    <ModalMenu>
 
                         {
                             isOpen && (
@@ -58,7 +58,7 @@ function MyCourses() {
                                 <MyCourse key={course.id} item={course} />
                             ))
                         }
-                    </Modal>
+                    </ModalMenu>
                 </div>
 
 
