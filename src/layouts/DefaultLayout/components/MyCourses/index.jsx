@@ -1,13 +1,10 @@
-import { useState } from 'react';
 import clsx from 'clsx';
 
 import styles from './MyCourses.module.scss';
 import MyCourse from './MyCourse';
 import ModalMenu from '../ModalMenu';
 
-function MyCourses() {
-    const [isOpen, setIsOpen] = useState(false);
-
+function MyCourses({ isOpen, onToggle }) {
     const courses = [
         {
             id: 1,
@@ -28,7 +25,7 @@ function MyCourses() {
     ]
 
     function handleOpenCourses() {
-        setIsOpen(!isOpen);
+        onToggle();
     }
 
     return (
@@ -39,8 +36,6 @@ function MyCourses() {
                 </div>
 
                 <div className={clsx(styles.content, { [styles.open]: isOpen })}>
-
-
 
                     <ModalMenu>
 
@@ -60,8 +55,6 @@ function MyCourses() {
                         }
                     </ModalMenu>
                 </div>
-
-
             </div>
         </>
     )

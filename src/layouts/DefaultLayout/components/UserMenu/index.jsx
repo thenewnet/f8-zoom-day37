@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import clsx from 'clsx';
 
 import styles from './UserMenu.module.scss';
@@ -7,9 +6,7 @@ import UserMenuItem from './UserMenuItem';
 import { Link } from 'react-router';
 import ModalMenu from '../ModalMenu';
 
-function UserMenu() {
-    const [isOpen, setIsOpen] = useState(false);
-
+function UserMenu({ isOpen, onToggle }) {
     const items = [
         {
             children: [
@@ -56,7 +53,7 @@ function UserMenu() {
     ];
 
     function handleOpen() {
-        setIsOpen(!isOpen);
+        onToggle();
     }
 
     return (
@@ -70,7 +67,6 @@ function UserMenu() {
                 <div className={clsx(styles.content, { [styles.open]: isOpen })}>
 
                     <ModalMenu>
-
                         {
                             isOpen && (
 

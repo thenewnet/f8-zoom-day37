@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Bell } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -6,9 +5,7 @@ import styles from './Notification.module.scss';
 import NotificationItem from './NotificationItem';
 import ModalMenu from '../ModalMenu';
 
-function Notification() {
-    const [isOpen, setIsOpen] = useState(false);
-
+function Notification({ isOpen, onToggle }) {
     const items = [
         {
             id: 1,
@@ -50,13 +47,14 @@ function Notification() {
             created_time: "2 ngày trước",
             unread: true,
         },  
-    ]
+    ];
 
     const handleOpen = () => {
-        setIsOpen(!isOpen);
+        onToggle();
     };
+
     return (
-       <>
+        <>
             <div className={styles.container}>
                 <div className={styles.title} onClick={handleOpen}>
                     <Bell className={styles.icon} size={20} />
@@ -82,8 +80,6 @@ function Notification() {
                         }
                     </ModalMenu>
                 </div>
-
-
             </div>
         </>
     )
