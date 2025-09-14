@@ -6,8 +6,10 @@
     width: 100%;
 
     .title {
-        font-weight: bold;
+        font-weight: 600;
         cursor: pointer;
+        white-space: nowrap;
+
     }
 
     .content {
@@ -25,11 +27,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px;
+            padding: 0 15px 15px 15px;
 
             .title {
                 text-transform: uppercase;
             }
+
             a {
                 text-decoration: none;
                 padding: 10px;
