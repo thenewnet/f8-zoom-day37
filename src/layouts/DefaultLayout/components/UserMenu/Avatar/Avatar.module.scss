@@ -1,0 +1,27 @@
+.avatarWrapper {
+    position: relative;
+    margin: 5px 0;
+
+    .avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        background: linear-gradient(180deg, #ffd900, #b45264 93.68%);
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+    }
+
+    &.large .avatar {
+        width: 48px;
+        height: 48px;
+    }
+}

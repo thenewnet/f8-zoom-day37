@@ -1,10 +1,100 @@
+import { useState } from 'react';
+import clsx from 'clsx';
+
+import Modal from '../../../../components/Modal';
 import styles from './UserMenu.module.scss';
+import Avatar from './Avatar';
+import UserMenuItem from './UserMenuItem';
+import { Link } from 'react-router';
 
 function UserMenu() {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const items = [
+        {
+            children: [
+                {
+                    id: 1,
+                    title: "Trang cá nhân",
+                    link: "#"
+                }
+            ]
+        },
+        {
+            children: [
+                {
+                    id: 2,
+                    title: "Viết blog",
+                    link: "#"
+                },
+                {
+                    id: 3,
+                    title: "Bài viết của tôi",
+                    link: "#"
+                },
+                {
+                    id: 4,
+                    title: "Bài viết đã lưu",
+                    link: "#"
+                }
+            ]
+        },
+        {
+            children: [
+                {
+                    id: 5,
+                    title: "Cài đặt",
+                    link: "#"
+                },
+                {
+                    id: 6,
+                    title: "Đăng xuất",
+                    link: "#"
+                }
+            ]
+        }
+    ];
+
+    function handleOpen() {
+        setIsOpen(!isOpen);
+    }
+
     return (
         <>
             <div className={styles.container}>
-                UserMenu
+                <div className={styles.title} onClick={handleOpen}>
+                    <Avatar />
+                </div>
+
+
+                <div className={clsx(styles.content, { [styles.open]: isOpen })}>
+
+                    <Modal isOpen={isOpen}>
+
+                        {
+                            isOpen && (
+
+                                <div className={styles.header}>
+                                    <Link to="/profile">
+                                        <div className={styles.left}>
+                                            <Avatar size="large" />
+                                        </div>
+                                        <div className={styles.right}>
+                                            <h2>Nguyễn Văn A</h2>
+                                            <p>@nguyenvana</p>
+                                        </div>
+                                    </Link>
+                                </div>
+                            )
+                        }
+
+                        {
+                            items.map((item) => (
+                                <UserMenuItem key={item.id} item={item} />
+                            ))
+                        }
+                    </Modal>
+                </div>
             </div>
         </>
     )

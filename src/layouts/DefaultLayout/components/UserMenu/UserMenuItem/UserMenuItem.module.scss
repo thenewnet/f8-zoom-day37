@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 10px;
+
+    .links {
+
+        border-top: 1px solid #eee;
+        padding-top: 10px;
+
+        a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.4rem;
+            padding: 10px 0;
+        }
+
+        .link {
+            padding: 10px 0;
+
+            a {
+                &:hover {
+                    color: #292929;
+                }
+            }
+        }
+    }
+}
