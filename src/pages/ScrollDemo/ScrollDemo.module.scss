@@ -1,0 +1,11 @@
+.container {
+    
+    min-height: calc(100vh - 60px);
+    padding: 20px;
+
+    .text {
+        margin-bottom: 20px;
+        text-align: justify;
+        line-height: 1.5;
+    }   
+}

@@ -8,9 +8,9 @@ function UserMenuItem({item}) {
 
             <div className={styles.links}>
                 {
-                    item.children.map((child)=> (
-                        <div className={styles.link}>
-                            <a href={child.link} key={child.id}>{child.title}</a>
+                    item.children.map((child, index)=> (
+                        <div className={styles.link} key={index}>
+                            <a href={child.link}>{child.title}</a>
                         </div>
                     ))
                 }

@@ -8,9 +8,10 @@ function DefaultLayout() {
             <div className={styles.container}>
                 <div className={styles.header}>
                     <Header />
-                </div>
-                
-                <Outlet />
+                </div>  
+                <div className={styles.content}>
+                    <Outlet />
+                </div>   
             </div>
         </>
     )

@@ -85,8 +85,8 @@ function UserMenu({ isOpen, onToggle }) {
                         }
 
                         {
-                            items.map((item) => (
-                                <UserMenuItem key={item.id} item={item} />
+                            items.map((item, index) => (
+                                <UserMenuItem key={index} item={item} />
                             ))
                         }
                     </ModalMenu>
