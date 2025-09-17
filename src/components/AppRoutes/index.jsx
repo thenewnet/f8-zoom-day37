@@ -14,6 +14,7 @@ function AppRoutes() {
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/modal-demo" element={<ModalDemo />} />
                     <Route path="/scroll-demo" element={<ScrollDemo />} />
+                    <Route path="/performance-demo)" element={<ScrollDemo />} />
                 </Route>
             </Routes>
         </HashRouter>
