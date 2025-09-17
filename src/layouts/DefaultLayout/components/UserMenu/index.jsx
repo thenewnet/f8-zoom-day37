@@ -13,7 +13,7 @@ function UserMenu({ isOpen, onToggle }) {
                 {
                     id: 1,
                     title: "Trang cá nhân",
-                    link: "#"
+                    link: "profile"
                 }
             ]
         },

@@ -1,3 +1,4 @@
+import { Link } from 'react-router';
 import Avatar from '../Avatar';
 import styles from './UserMenuItem.module.scss';
 
@@ -10,7 +11,7 @@ function UserMenuItem({item}) {
                 {
                     item.children.map((child, index)=> (
                         <div className={styles.link} key={index}>
-                            <a href={child.link}>{child.title}</a>
+                            <Link to={child.link}>{child.title}</Link>
                         </div>
                     ))
                 }
