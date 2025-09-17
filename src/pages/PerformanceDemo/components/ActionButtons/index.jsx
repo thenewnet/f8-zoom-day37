@@ -3,13 +3,13 @@ import { memo } from 'react';
 import styles from './ActionButtons.module.scss';
 
 function ActionButtons({ onIncrement, onReset }) {
-    console.log("ActionButtons rendered");
+    console.log("2. ActionButtons rendered");
 
     return (
         <>
             <div className={styles.container}>
-                <button onClick={onIncrement}>Increment</button>
-                <button onClick={onReset}>Reset</button>
+                <button className={styles.btn} onClick={onIncrement}>Increment</button>
+                <button className={styles.btn} onClick={onReset}>Reset</button>
             </div>
         </>
     )
