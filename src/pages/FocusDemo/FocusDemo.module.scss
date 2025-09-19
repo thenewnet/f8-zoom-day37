@@ -1,0 +1,57 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    align-items: center;
+    justify-content: flex-start;
+
+    h1 {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    
+    .counter {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+    }
+    .inputWrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .result {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: var(--primary-color);
+    }
+
+    .btnActions {
+        display: flex;
+        gap: 10px;
+
+        
+    }
+
+    .btn {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            min-width: 100px;
+
+            &:hover {
+                background-color: #C0C0C0;
+                transition: background-color 0.3s ease;
+            }
+        }
+
+}

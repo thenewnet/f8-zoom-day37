@@ -26,6 +26,26 @@ function Sidebar() {
             icon: MessageCircleQuestion,
             label: 'Performance Demo',
             path: '/performance-demo'
+        },
+        {
+            icon: Map,
+            label: 'Focus Demo',
+            path: '/focus-demo'
+        },
+        {
+            icon: FileText,
+            label: 'HOC Demo',
+            path: '/hoc-demo'
+        },
+        {
+            icon: MessageCircleQuestion,
+            label: 'Render Props Demo',
+            path: '/render-props-demo'
+        },
+        {
+            icon: MessageCircleQuestion,
+            label: 'Custom Hooks Demo',
+            path: '/custom-hooks-demo'
         }
     ];
 
