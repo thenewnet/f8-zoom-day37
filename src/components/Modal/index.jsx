@@ -1,123 +1,151 @@
 import { CircleX } from 'lucide-react';
 import styles from './Modal.module.scss';
 import PropTypes from "prop-types";
-import { useEffect } from 'react';
+import { forwardRef, useCallback, useEffect, useState } from 'react';
 import clsx from 'clsx';
+import { useImperativeHandle } from 'react';
 
 
-function Modal({
-    isOpen = false,
-    onAfterOpen,
-    onAfterClose,
-    onRequestClose,
-    closeTimeoutMS = 0,
-    overlayClassName,
-    className,
-    bodyOpenClassName,
-    htmlOpenClassName = 'modal-open',
-    shouldCloseOnOverlayClick = true,
-    shouldCloseOnEsc = true,
-    children }) {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    const handleRequestClose = () => {
-        setTimeout(onRequestClose, closeTimeoutMS);
-    }
+const Modal = forwardRef(
+    (
+        {
+            isOpen: _isOpen = false,
+            onAfterOpen,
+            onAfterClose,
+            onRequestClose,
+            closeTimeoutMS = 0,
+            overlayClassName,
+            className,
+            bodyOpenClassName,
+            htmlOpenClassName = 'modal-open',
+            shouldCloseOnOverlayClick = true,
+            shouldCloseOnEsc = true,
+            children
+        },
+        ref
+    ) => {
 
-    // For On Close
-    useEffect(() => {
-        const handleKeyup = (e) => {
-            if (shouldCloseOnEsc && e.key === 'Escape') {
-                handleRequestClose();
-            }
-        };
+        const [isOpen, setIsOpen] = useState(_isOpen);
 
-        if (isOpen) {
-            document.addEventListener("keyup", handleKeyup);
-        }
+        useEffect(() => {
+            setIsOpen(_isOpen);
+        }, [_isOpen]);
 
-        return () => {
+        useImperativeHandle(ref,
+            () => ({
+                open() {
+                    setIsOpen(true);
+                },
+                close() {
+                    setIsOpen(false);
+                },
+                toggle() {
+                    setIsOpen(!isOpen);
+                }
+            }),
+            [isOpen]);
+
+
+        const handleRequestClose = useCallback(() => {
+            setTimeout(onRequestClose, closeTimeoutMS)
+        }, [onRequestClose, closeTimeoutMS]);
+
+        // For On Close
+        useEffect(() => {
+            const handleKeyup = (e) => {
+                if (shouldCloseOnEsc && e.key === 'Escape') {
+                    handleRequestClose();
+                }
+            };
+
             if (isOpen) {
-                document.removeEventListener("keyup", handleKeyup);
+                document.addEventListener("keyup", handleKeyup);
             }
-        };
-    }, [isOpen, shouldCloseOnEsc, handleRequestClose]);
+
+            return () => {
+                if (isOpen) {
+                    document.removeEventListener("keyup", handleKeyup);
+                }
+            };
+        }, [isOpen, shouldCloseOnEsc, handleRequestClose]);
 
 
-    // For Body Open Class Name
-    useEffect(() => {
-        if (isOpen) {
-            document.body.classList.add(bodyOpenClassName);
-        }
-
-        return () => {
+        // For Body Open Class Name
+        useEffect(() => {
             if (isOpen) {
-                document.body.classList.remove(bodyOpenClassName);
+                document.body.classList.add(bodyOpenClassName);
             }
-        };
-    }, [isOpen, bodyOpenClassName]);
+
+            return () => {
+                if (isOpen) {
+                    document.body.classList.remove(bodyOpenClassName);
+                }
+            };
+        }, [isOpen, bodyOpenClassName]);
 
 
-    // For HTML Open Class Name
-    useEffect(() => {
-        if (isOpen) {
-            document.documentElement.classList.add(htmlOpenClassName);
-        }
-
-        return () => {
+        // For HTML Open Class Name
+        useEffect(() => {
             if (isOpen) {
-                document.documentElement.classList.remove(htmlOpenClassName);
+                document.documentElement.classList.add(htmlOpenClassName);
             }
-        };
-    }, [isOpen, htmlOpenClassName]);
 
-    // For onAfterOpen
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            if (isOpen && onAfterOpen) {
-                onAfterOpen();
-            }
-            if (!isOpen && onAfterClose) {
-                onAfterClose();
-            }
-        }, closeTimeoutMS);
+            return () => {
+                if (isOpen) {
+                    document.documentElement.classList.remove(htmlOpenClassName);
+                }
+            };
+        }, [isOpen, htmlOpenClassName]);
 
-        return () => clearTimeout(timer);
-    }, [isOpen, onAfterOpen, onAfterClose, closeTimeoutMS]);
+        // For onAfterOpen
+        useEffect(() => {
+            const timer = setTimeout(() => {
+                if (isOpen && onAfterOpen) {
+                    onAfterOpen();
+                }
+                if (!isOpen && onAfterClose) {
+                    onAfterClose();
+                }
+            }, closeTimeoutMS);
 
-    // For Render
-    if (!isOpen) return null;
+            return () => clearTimeout(timer);
+        }, [isOpen, onAfterOpen, onAfterClose, closeTimeoutMS]);
 
-    return (
-        <>
-            <div className={styles.container}>
-                <div className={clsx(styles.content, className)}>
-                    {/* Close Button */}
-                    <button className={styles.closeBtn} onClick={handleRequestClose}>
-                        <CircleX />
-                    </button>
+        // For Render
+        if (!isOpen) return null;
 
-                    {/* Body children */}
-                    <div className={styles.body}>
-                        {children}
+        return (
+            <>
+                <div className={styles.container}>
+                    <div className={clsx(styles.content, className)}>
+                        {/* Close Button */}
+                        <button className={styles.closeBtn} onClick={handleRequestClose}>
+                            <CircleX />
+                        </button>
+
+                        {/* Body children */}
+                        <div className={styles.body}>
+                            {children}
+                        </div>
+                    </div>
+
+                    {/* Overlay */}
+                    <div
+                        className={clsx(styles.overlay, overlayClassName)}
+                        onClick={() => {
+                            if (shouldCloseOnOverlayClick) {
+                                handleRequestClose();
+                            }
+                        }}
+                    >
+
                     </div>
                 </div>
 
-                {/* Overlay */}
-                <div
-                    className={clsx(styles.overlay, overlayClassName)}
-                    onClick={() => {
-                        if (shouldCloseOnOverlayClick) {
-                            handleRequestClose();
-                        }
-                    }}
-                >
-
-                </div>
-            </div>
-
-        </>
-    )
-}
+            </>
+        )
+    }
+)
 
 Modal.propTypes = {
     isOpen: PropTypes.bool,

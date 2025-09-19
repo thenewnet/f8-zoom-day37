@@ -40,7 +40,7 @@ function FocusDemo() {
                         <h2>Count: {count}</h2>
                         <h2>Re render (Count Ref): {countRef.current}</h2>
 
-                        <button onClick={handleCounter} className={styles.btn}>Get Values</button>
+                        <button onClick={handleCounter} className={styles.btn}>Increment</button>
                     </div>
                     <div className={styles.item}>
                         <CustomInput label="Name" placeholder="Enter your name" ref={inputRef1} />

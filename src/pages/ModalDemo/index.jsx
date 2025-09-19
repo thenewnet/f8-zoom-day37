@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import styles from './ModalDemo.module.scss';
 import Modal from '../../components/Modal';
 
@@ -9,6 +9,9 @@ function ModalDemo() {
     const [isOpenNotCloseEsc, setIsOpenNotCloseEsc] = useState(false);
     const [isOpenCustomClassName, setIsOpenCustomClassName] = useState(false);
     const [isOpenCallback, setIsOpenCallback] = useState(false);
+    const [isOpenImprativeHandle, setIsOpenImprativeHandle] = useState(false);
+
+    const modalRef = useRef(false);
 
     return (
         <>
@@ -111,6 +114,39 @@ function ModalDemo() {
                             <h2>Callbacks Modal</h2>
                             <p>Modal với callbacks.</p>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
+                        </div>
+                    </Modal>
+                </div>
+
+                {/* Cập nhật Modal với useImperativeHandle */}
+                <div className={styles.item}>
+                    <h5>Modal với isOpenImprativeHandle</h5>
+                    <button
+                        className={styles.btnOpenModel}
+                        onClick={() => modalRef.current.open()}
+                    >
+                        Open Modal</button>
+                    <Modal
+                        ref={modalRef}
+                        // isOpen={isOpenImprativeHandle}
+                        onRequestClose={() => modalRef.current.close()}
+                        closeTimeoutMS={0}
+                    >
+                        <div className={styles.bodyModal}>
+                            <h2>useImperativeHandle Modal</h2>
+                            <p>Modal với useImperativeHandle.</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
+
+                            <button
+                                className={styles.btnOpenModel}
+                                onClick={() => modalRef.current.close()}
+                            >
+                                Close Modal</button>
+                            <button
+                                className={styles.btnOpenModel}
+                                onClick={() => modalRef.current.toggle()}
+                            >
+                                Toogle Modal</button>
                         </div>
                     </Modal>
                 </div>

@@ -21,25 +21,32 @@
         font-size: 1.2rem;
         font-weight: bold;
     }
+
     .item {
         display: flex;
         flex-direction: column;
         gap: 10px;
         min-width: 300px;
 
-        .btnOpenModel {
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            background-color: var(--primary-color);
-            color: #fff;
-            cursor: pointer;
-            width: 100%;
-            max-width: 200px;
-        }
+    }
+
+    .btnOpenModel {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: var(--primary-color);
+        color: #fff;
+        cursor: pointer;
+        width: 100%;
+        max-width: 200px;
+        margin-left: 10px;
     }
 
     .customModalClassName {
         color: var(--primary-color);
     }
-} 
+
+    .bodyModal .btnOpenModel {
+        margin-top: 20px;
+    }
+}
