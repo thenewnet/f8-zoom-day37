@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+    .loadingIcon {
+        font-size: 2rem;
+        color: var(--primary-color);
+    }
+}
