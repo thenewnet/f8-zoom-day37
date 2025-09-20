@@ -2,18 +2,22 @@
     position: fixed;
     left: 0;
     top: 60px;
-    width: var(--layout-sidebar-width);
-    padding: 0 8px;
-
+    width: 100px;
     height: calc(100vh - 60px);
     background-color: #fff;
     z-index: 999;
+    margin: 0 5px;
+    
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin; 
 }
 
 .nav {
     display: flex;
     flex-direction: column;
     padding: 20px 0;
+    min-height: 100%;
 }
 
 .navItem {
